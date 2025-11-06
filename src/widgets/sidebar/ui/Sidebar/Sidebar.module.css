@@ -1,0 +1,17 @@
+.sidebar {
+  position: absolute;
+  padding: 78px 35px 0 35px;
+  width: 354px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  border: 2px solid transparent;
+  background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9))
+      padding-box,
+    linear-gradient(90deg, #e81a7e, #370ec4) border-box;
+  border-radius: 8px;
+}
