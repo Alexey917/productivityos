@@ -3,6 +3,7 @@
 }
 
 .text {
+  font-family: 'Inter', sans-serif;
   font-size: 32px;
   background: linear-gradient(90deg, #e81a7e, #370ec4);
   -webkit-background-clip: text;

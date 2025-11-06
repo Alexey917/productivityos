@@ -12,7 +12,7 @@ interface ICustomLink {
 
 export const CustomLink: FC<ICustomLink> = ({ text, to, svg, svgPath }) => {
   return (
-    <Link to={to}>
+    <Link to={to} className={classes.link}>
       {svg && (
         <svg className={classes.icon}>
           <use href={svgPath && svgPath}></use>

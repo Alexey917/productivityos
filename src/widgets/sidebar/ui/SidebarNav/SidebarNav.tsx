@@ -10,7 +10,7 @@ const SidebarNav = () => {
   return (
     <nav className={classes.nav}>
       <ul className={classes.nav__list}>
-        <li>
+        <li className={classes.nav__item}>
           <CustomLink
             text="Дашбоард"
             to="#"
@@ -18,15 +18,17 @@ const SidebarNav = () => {
             svgPath={dashboard + '#home'}
           />
         </li>
-        <CustomLink
-          text="Сферы"
-          to="#"
-          svg={true}
-          svgPath={sphere + '#sphere'}
-        />
-        <li></li>
 
-        <li>
+        <li className={classes.nav__item}>
+          <CustomLink
+            text="Сферы"
+            to="#"
+            svg={true}
+            svgPath={sphere + '#sphere'}
+          />
+        </li>
+
+        <li className={classes.nav__item}>
           <CustomLink
             text="Привычки"
             to="#"
@@ -35,7 +37,7 @@ const SidebarNav = () => {
           />
         </li>
 
-        <li>
+        <li className={classes.nav__item}>
           <CustomLink
             text="Аналитика"
             to="#"
