@@ -2,11 +2,13 @@ import js from '@eslint/js';
 import globals from 'globals';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
+import { config } from '@feature-sliced/eslint-config';
 
 export default [
   { ignores: ['dist'] },
+  ...config,
   {
-    files: ['**/*.{js,jsx}'],
+    files: ['**/*.{js,jsx,ts,tsx}'], // ⬅️ Добавил ts,tsx
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,

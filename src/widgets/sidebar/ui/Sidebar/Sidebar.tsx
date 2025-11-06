@@ -1,7 +1,13 @@
-import React from 'react';
+import { Logo } from '@/shared';
+import SidebarNav from '../SidebarNav/SidebarNav';
+import { SidebarToggle } from '../SidebarToggle/SidebarToggle';
 
-const Sidebar = () => {
-  return <aside></aside>;
+export const Sidebar = () => {
+  return (
+    <aside>
+      <Logo />
+      <SidebarNav />
+      <SidebarToggle />
+    </aside>
+  );
 };
-
-export default Sidebar;
