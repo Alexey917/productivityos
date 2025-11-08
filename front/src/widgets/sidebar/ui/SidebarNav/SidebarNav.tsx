@@ -5,8 +5,13 @@ import habbits from '@/shared/assets/sprite.svg';
 import analytics from '@/shared/assets/sprite.svg';
 
 import classes from './SidebarNav.module.css';
+import type { FC } from 'react';
 
-const SidebarNav = () => {
+interface ISidebarNav {
+  isOpen: boolean;
+}
+
+const SidebarNav: FC<ISidebarNav> = ({ isOpen }) => {
   return (
     <nav className={classes.nav}>
       <ul className={classes.nav__list}>
@@ -16,6 +21,7 @@ const SidebarNav = () => {
             to="#"
             svg={true}
             svgPath={dashboard + '#home'}
+            isOpen={isOpen}
           />
         </li>
 
@@ -25,6 +31,7 @@ const SidebarNav = () => {
             to="#"
             svg={true}
             svgPath={sphere + '#sphere'}
+            isOpen={isOpen}
           />
         </li>
 
@@ -34,6 +41,7 @@ const SidebarNav = () => {
             to="#"
             svg={true}
             svgPath={habbits + '#habbits'}
+            isOpen={isOpen}
           />
         </li>
 
@@ -43,6 +51,7 @@ const SidebarNav = () => {
             to="#"
             svg={true}
             svgPath={analytics + '#analytics'}
+            isOpen={isOpen}
           />
         </li>
       </ul>

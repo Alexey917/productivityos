@@ -1,5 +1,9 @@
 .logo {
   text-align: center;
+  opacity: 1;
+  visibility: visible;
+  transition: all 1s;
+  overflow: hidden;
 }
 
 .text {
@@ -10,4 +14,12 @@
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
+  transform: translateX(0);
+  transition: transform 1.5s;
+}
+
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-300px);
 }
