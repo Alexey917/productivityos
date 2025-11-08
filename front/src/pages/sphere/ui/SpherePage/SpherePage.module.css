@@ -1,6 +1,6 @@
 .sphere {
   position: relative;
-  background-image: url('./sphere_bg.jpg');
+  background-image: url('./sphere_bg.webp');
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
@@ -16,6 +16,6 @@
   top: 0;
   left: 0;
   background-color: black;
-  opacity: 0.9;
+  opacity: 0.8;
   z-index: 1;
 }

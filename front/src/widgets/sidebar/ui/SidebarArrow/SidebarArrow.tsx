@@ -5,11 +5,12 @@ interface IArrow {
   one: string;
   two: string;
   three: string;
+  isOpen: boolean;
 }
 
-export const SidebarArrow: FC<IArrow> = ({ one, two, three }) => {
+export const SidebarArrow: FC<IArrow> = ({ one, two, three, isOpen }) => {
   return (
-    <>
+    <div className={isOpen ? classes.rotate : classes.usual}>
       <svg
         width="30px"
         height="30px"
@@ -21,9 +22,9 @@ export const SidebarArrow: FC<IArrow> = ({ one, two, three }) => {
         <g
           id="arrow"
           stroke="none"
-          stroke-width="1"
+          strokeWidth="1"
           fill="none"
-          fill-rule="evenodd"
+          fillRule="evenodd"
         >
           <path
             className={one}
@@ -42,6 +43,6 @@ export const SidebarArrow: FC<IArrow> = ({ one, two, three }) => {
           ></path>
         </g>
       </svg>
-    </>
+    </div>
   );
 };
