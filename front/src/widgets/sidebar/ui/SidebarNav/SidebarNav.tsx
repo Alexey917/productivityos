@@ -18,7 +18,7 @@ const SidebarNav: FC<ISidebarNav> = ({ isOpen }) => {
         <li className={classes.nav__item}>
           <CustomLink
             text="Дашбоард"
-            to="#"
+            to="/dashboard"
             svg={true}
             svgPath={dashboard + '#home'}
             isOpen={isOpen}
@@ -28,7 +28,7 @@ const SidebarNav: FC<ISidebarNav> = ({ isOpen }) => {
         <li className={classes.nav__item}>
           <CustomLink
             text="Сферы"
-            to="#"
+            to="/sphere"
             svg={true}
             svgPath={sphere + '#sphere'}
             isOpen={isOpen}
@@ -38,7 +38,7 @@ const SidebarNav: FC<ISidebarNav> = ({ isOpen }) => {
         <li className={classes.nav__item}>
           <CustomLink
             text="Привычки"
-            to="#"
+            to="/habbits"
             svg={true}
             svgPath={habbits + '#habbits'}
             isOpen={isOpen}
@@ -48,7 +48,7 @@ const SidebarNav: FC<ISidebarNav> = ({ isOpen }) => {
         <li className={classes.nav__item}>
           <CustomLink
             text="Аналитика"
-            to="#"
+            to="/analytics"
             svg={true}
             svgPath={analytics + '#analytics'}
             isOpen={isOpen}
