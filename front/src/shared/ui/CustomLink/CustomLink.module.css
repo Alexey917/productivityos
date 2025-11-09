@@ -39,6 +39,19 @@
   visibility: hidden;
 }
 
+.active .text {
+  background: linear-gradient(90deg, #e81a7e, #370ec4);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.link.active .icon {
+  fill: #e81a7e;
+  stroke: #e81a7e;
+}
+
 @media (hover: hover) {
   .link:hover .text {
     background: linear-gradient(90deg, #e81a7e, #370ec4);
