@@ -6,7 +6,7 @@ import { SidebarToggle } from '../SidebarToggle/SidebarToggle';
 import classes from './Sidebar.module.css';
 
 export const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState<boolean>(true);
 
   const toggle = () => {
     setIsOpen(!isOpen);

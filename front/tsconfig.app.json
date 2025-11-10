@@ -6,7 +6,8 @@
       "@/shared/*": ["src/shared/*"],
       "@/widgets/*": ["src/widgets/*"],
       "@/app/*": ["src/app/*"],
-      "@/pages/*": ["src/pages/*"]
+      "@/pages/*": ["src/pages/*"],
+      "@/features/*": ["src/features/*"]
     },
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
     "target": "ES2022",

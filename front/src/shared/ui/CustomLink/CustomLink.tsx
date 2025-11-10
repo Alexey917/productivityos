@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 import classes from './CustomLink.module.css';
 
@@ -18,7 +18,6 @@ export const CustomLink: FC<ICustomLink> = ({
   svgPath,
   isOpen,
 }) => {
-  console.log(isOpen);
   if (isOpen) {
     return (
       <NavLink
@@ -26,6 +25,7 @@ export const CustomLink: FC<ICustomLink> = ({
         className={({ isActive }) =>
           isActive ? `${classes.active} ${classes.link}` : classes.link
         }
+        // onClick={}
       >
         {svg && (
           <svg className={classes.icon}>
