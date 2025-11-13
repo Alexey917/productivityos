@@ -1,6 +1,7 @@
 import { SpherePage } from '@/pages';
 import { DashboardPage } from '@/pages';
 import { createBrowserRouter } from 'react-router-dom';
+import { RouterSync } from '../providers/storeProvider/routerSync';
 
 export const router = createBrowserRouter([
   {
@@ -9,18 +10,36 @@ export const router = createBrowserRouter([
   },
   {
     path: '/dashboard',
-    element: <DashboardPage />,
+    element: (
+      <>
+        <RouterSync />
+        <DashboardPage />
+      </>
+    ),
   },
   {
     path: '/sphere',
-    element: <SpherePage />,
+    element: (
+      <>
+        <RouterSync />
+        <SpherePage />
+      </>
+    ),
   },
   {
     path: '/habbits',
-    // element: <SpherePage />,
+    element: (
+      <>
+        <RouterSync />
+      </>
+    ),
   },
   {
     path: '/analytics',
-    // element: <SpherePage />,
+    element: (
+      <>
+        <RouterSync />
+      </>
+    ),
   },
 ]);

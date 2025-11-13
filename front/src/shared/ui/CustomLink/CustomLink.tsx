@@ -1,5 +1,7 @@
 import type { FC } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import type { RootState } from '@/shared/lib/store';
 
 import classes from './CustomLink.module.css';
 
@@ -18,21 +20,23 @@ export const CustomLink: FC<ICustomLink> = ({
   svgPath,
   isOpen,
 }) => {
+  const colorTheme = useSelector((state: RootState) => state.colorTheme.color);
+
   if (isOpen) {
     return (
       <NavLink
         to={to}
         className={({ isActive }) =>
-          isActive ? `${classes.active} ${classes.link}` : classes.link
+          isActive ? `${classes.active} ${classes.link}` : `${classes.link}`
         }
         // onClick={}
       >
         {svg && (
-          <svg className={classes.icon}>
+          <svg className={`${classes.icon} ${classes[colorTheme]}`}>
             <use href={svgPath && svgPath}></use>
           </svg>
         )}
-        <span className={classes.text}>{text}</span>
+        <span className={`${classes.text} ${classes[colorTheme]}`}>{text}</span>
       </NavLink>
     );
   } else {
@@ -44,7 +48,9 @@ export const CustomLink: FC<ICustomLink> = ({
         }
       >
         {svg && (
-          <svg className={`${classes.icon} ${classes.hiddenLinks}`}>
+          <svg
+            className={`${classes.icon} ${classes.hiddenLinks} ${classes[colorTheme]}`}
+          >
             <use href={svgPath && svgPath}></use>
           </svg>
         )}

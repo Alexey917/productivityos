@@ -10,12 +10,22 @@
   left: 0;
   z-index: 2;
   border: 2px solid transparent;
+  border-radius: 0px 8px 8px 0px;
+  transition: all 0.5s ease;
+}
+
+.purple {
+  box-shadow: 1px 0 20px 0 #370ec4;
   background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9))
       padding-box,
     linear-gradient(90deg, #e81a7e, #370ec4) border-box;
-  border-radius: 0px 8px 8px 0px;
-  box-shadow: 1px 0 20px 0 #370ec4;
-  transition: all 0.5s ease;
+}
+
+.orange {
+  box-shadow: 1px 0 20px 0 #ed654a;
+  background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9))
+      padding-box,
+    linear-gradient(90deg, #fcd453, #ed654a) border-box;
 }
 
 .closedSidebar {

@@ -16,7 +16,13 @@ export const Sidebar = () => {
   };
 
   return (
-    <aside className={isOpen ? classes.sidebar : classes.closedSidebar}>
+    <aside
+      className={
+        isOpen
+          ? `${classes.sidebar} ${classes[colorTheme]}`
+          : `${classes.closedSidebar} ${classes[colorTheme]}`
+      }
+    >
       <Logo isOpen={isOpen} />
       <SidebarNav isOpen={isOpen} />
       <SidebarToggle toggle={toggle} isOpen={isOpen} />

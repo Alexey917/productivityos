@@ -6,14 +6,31 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(90deg, #e81a7e, #370ec4);
+  background: var(--linear-gradient);
+
   border-radius: 0px 0px 8px 0px;
   cursor: pointer;
   overflow: hidden;
   border: none;
-  border-top: 2px solid #370ec4;
+
   outline: none;
   transition: all 0.5s ease;
+}
+
+.purple {
+  --linear-gradient: linear-gradient(90deg, #e81a7e, #370ec4);
+  border-top: 2px solid #370ec4;
+  --color_anim: #ff49b6;
+  --shadow_color: #e81a7e;
+  --shadow_color_insert: #370ec4;
+}
+
+.orange {
+  --linear-gradient: linear-gradient(90deg, #fcd453, #ed654a);
+  border-top: 2px solid #ed654a;
+  --color_anim: #e74325;
+  --shadow_color: #fcd453;
+  --shadow_color_insert: #ed654a;
 }
 
 .closedBtn {
@@ -31,7 +48,7 @@ span {
   left: 0;
   width: 100%;
   height: 200px;
-  background: linear-gradient(90deg, #e81a7e, #370ec4);
+  background: var(--linear-gradient);
   box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.7);
   border-radius: 0px 0px 8px 0px;
   z-index: -1;
@@ -56,7 +73,8 @@ span {
 .closedBtn .liquid::after {
   border-radius: 45%;
   background: rgba(20, 20, 20, 1);
-  box-shadow: 0 0 10px 5px #e81a7e, inset 0 0 5px #370ec4;
+  box-shadow: 0 0 10px 5px var(--shadow_color),
+    inset 0 0 5px var(--shadow_color_insert);
   animation: animate 5s linear infinite;
   opacity: 0.8;
 }
@@ -131,7 +149,7 @@ path.two {
     fill: white;
   }
   50% {
-    fill: #ff49b6;
+    fill: var(--color_anim);
   }
   100% {
     fill: white;

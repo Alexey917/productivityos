@@ -2,12 +2,12 @@ import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
 interface IColorTheme {
   currentPath: string;
-  color: string | null;
+  color: string;
 }
 
 const initialState: IColorTheme = {
   currentPath: '/',
-  color: null,
+  color: 'purple',
 };
 
 const colorThemeSlice = createSlice({

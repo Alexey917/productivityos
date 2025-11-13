@@ -40,21 +40,39 @@
 }
 
 .active .text {
-  background: linear-gradient(90deg, #e81a7e, #370ec4);
+  background: var(--leaner-gradient);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
+  transition: all 0.5s ease;
+}
+
+.purple {
+  --leaner-gradient: linear-gradient(90deg, #e81a7e, #0e52c4);
+  --active-icon: #e81a7e;
+}
+
+.orange {
+  --leaner-gradient: linear-gradient(90deg, #fcd453, #ed654a);
+  --active-icon: #fcd453;
+}
+
+.green {
+}
+
+.red {
 }
 
 .link.active .icon {
-  fill: #e81a7e;
-  stroke: #e81a7e;
+  fill: var(--active-icon);
+  stroke: var(--active-icon);
+  transition: all 0.5s ease;
 }
 
 @media (hover: hover) {
   .link:hover .text {
-    background: linear-gradient(90deg, #e81a7e, #370ec4);
+    background: var(--leaner-gradient);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -62,7 +80,7 @@
   }
 
   .link:hover .icon {
-    fill: #e81a7e;
-    stroke: #e81a7e;
+    fill: var(--active-icon);
+    stroke: var(--active-icon);
   }
 }

@@ -10,13 +10,20 @@
   font-family: 'Inter', sans-serif;
   line-height: 120%;
   font-size: 26px;
-  background: linear-gradient(90deg, #e81a7e, #370ec4);
+  background: var(--logo-gradient);
   -webkit-background-clip: text;
-  background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
   transform: translateX(0);
   transition: transform 1.5s;
+}
+
+.purple {
+  --logo-gradient: linear-gradient(90deg, #e81a7e, #370ec4);
+}
+
+.orange {
+  --logo-gradient: linear-gradient(90deg, #fcd453, #ed654a);
 }
 
 .hidden {
