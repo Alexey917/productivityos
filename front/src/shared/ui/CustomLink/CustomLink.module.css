@@ -59,6 +59,8 @@
 }
 
 .green {
+  --leaner-gradient: linear-gradient(90deg, #31c300, #e9ce5a);
+  --active-icon: #31c300;
 }
 
 .red {

@@ -1,0 +1,21 @@
+.habbits {
+  position: relative;
+  background-image: url('./habbits_bg.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  z-index: 0;
+}
+
+.habbits::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: black;
+  opacity: 0.8;
+  z-index: 1;
+}

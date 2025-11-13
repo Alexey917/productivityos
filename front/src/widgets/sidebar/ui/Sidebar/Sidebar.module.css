@@ -28,6 +28,13 @@
     linear-gradient(90deg, #fcd453, #ed654a) border-box;
 }
 
+.green {
+  box-shadow: 1px 0 20px 0 #e9ce5a;
+  background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9))
+      padding-box,
+    linear-gradient(90deg, #31c300, #e9ce5a) border-box;
+}
+
 .closedSidebar {
   width: 82px;
 }

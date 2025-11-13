@@ -26,6 +26,10 @@
   --logo-gradient: linear-gradient(90deg, #fcd453, #ed654a);
 }
 
+.green {
+  --logo-gradient: linear-gradient(90deg, #31c300, #e9ce5a);
+}
+
 .hidden {
   opacity: 0;
   visibility: hidden;

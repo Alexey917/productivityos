@@ -33,6 +33,14 @@
   --shadow_color_insert: #ed654a;
 }
 
+.green {
+  --linear-gradient: linear-gradient(90deg, #31c300, #e9ce5a);
+  border-top: 2px solid #e9ce5a;
+  --color_anim: #eec40a;
+  --shadow_color: #e9ce5a;
+  --shadow_color_insert: #e9ce5a;
+}
+
 .closedBtn {
   width: 78px;
 }
