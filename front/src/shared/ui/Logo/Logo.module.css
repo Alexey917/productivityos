@@ -8,6 +8,7 @@
 
 .text {
   font-family: 'Inter', sans-serif;
+  line-height: 120%;
   font-size: 26px;
   background: linear-gradient(90deg, #e81a7e, #370ec4);
   -webkit-background-clip: text;
