@@ -41,6 +41,14 @@
   --shadow_color_insert: #e9ce5a;
 }
 
+.red {
+  --linear-gradient: linear-gradient(90deg, #ee4029, #c93ae8);
+  border-top: 2px solid #c93ae8;
+  --color_anim: #c93ae8;
+  --shadow_color: #c93ae8;
+  --shadow_color_insert: #c93ae8;
+}
+
 .closedBtn {
   width: 78px;
 }

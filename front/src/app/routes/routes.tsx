@@ -10,6 +10,7 @@ export const router = createBrowserRouter([
     path: '/',
     // element: <SpherePage />,
   },
+
   {
     path: '/dashboard',
     element: (

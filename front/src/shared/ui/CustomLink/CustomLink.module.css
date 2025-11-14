@@ -64,6 +64,8 @@
 }
 
 .red {
+  --leaner-gradient: linear-gradient(90deg, #ee4029, #c93ae8);
+  --active-icon: #ee4029;
 }
 
 .link.active .icon {

@@ -30,6 +30,10 @@
   --logo-gradient: linear-gradient(90deg, #31c300, #e9ce5a);
 }
 
+.red {
+  --logo-gradient: linear-gradient(90deg, #ee4029, #c93ae8);
+}
+
 .hidden {
   opacity: 0;
   visibility: hidden;

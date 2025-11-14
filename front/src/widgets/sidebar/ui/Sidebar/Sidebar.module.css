@@ -35,6 +35,13 @@
     linear-gradient(90deg, #31c300, #e9ce5a) border-box;
 }
 
+.red {
+  box-shadow: 1px 0 20px 0 #c93ae8;
+  background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9))
+      padding-box,
+    linear-gradient(90deg, #ee4029, #c93ae8) border-box;
+}
+
 .closedSidebar {
   width: 82px;
 }
