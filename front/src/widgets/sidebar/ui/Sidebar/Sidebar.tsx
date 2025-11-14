@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Logo } from '@/shared';
 import SidebarNav from '../SidebarNav/SidebarNav';
 import { SidebarToggle } from '../SidebarToggle/SidebarToggle';
@@ -8,24 +7,20 @@ import classes from './Sidebar.module.css';
 import { useSelector } from 'react-redux';
 
 export const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(true);
   const colorTheme = useSelector((state: RootState) => state.colorTheme.color);
-
-  const toggle = () => {
-    setIsOpen(!isOpen);
-  };
+  const sidebarOpen = useSelector((state: RootState) => state.sidebar.isOpen);
 
   return (
     <aside
       className={
-        isOpen
+        sidebarOpen
           ? `${classes.sidebar} ${classes[colorTheme]}`
           : `${classes.closedSidebar} ${classes[colorTheme]}`
       }
     >
-      <Logo isOpen={isOpen} />
-      <SidebarNav isOpen={isOpen} />
-      <SidebarToggle toggle={toggle} isOpen={isOpen} />
+      <Logo />
+      <SidebarNav />
+      <SidebarToggle />
     </aside>
   );
 };

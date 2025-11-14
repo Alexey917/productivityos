@@ -13,16 +13,11 @@ interface ICustomLink {
   isOpen?: boolean;
 }
 
-export const CustomLink: FC<ICustomLink> = ({
-  text,
-  to,
-  svg,
-  svgPath,
-  isOpen,
-}) => {
+export const CustomLink: FC<ICustomLink> = ({ text, to, svg, svgPath }) => {
   const colorTheme = useSelector((state: RootState) => state.colorTheme.color);
+  const sidebarOpen = useSelector((state: RootState) => state.sidebar.isOpen);
 
-  if (isOpen) {
+  if (sidebarOpen) {
     return (
       <NavLink
         to={to}

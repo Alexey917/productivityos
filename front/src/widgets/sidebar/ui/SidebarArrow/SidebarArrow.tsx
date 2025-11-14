@@ -1,16 +1,19 @@
 import type { FC } from 'react';
+import { useSelector } from 'react-redux';
+import type { RootState } from '@/shared';
 import classes from './SidebarArrow.module.css';
 
 interface IArrow {
   one: string;
   two: string;
   three: string;
-  isOpen: boolean;
 }
 
-export const SidebarArrow: FC<IArrow> = ({ one, two, three, isOpen }) => {
+export const SidebarArrow: FC<IArrow> = ({ one, two, three }) => {
+  const sidebarOpen = useSelector((state: RootState) => state.sidebar.isOpen);
+
   return (
-    <div className={isOpen ? classes.rotate : classes.usual}>
+    <div className={sidebarOpen ? classes.rotate : classes.usual}>
       <svg
         width="30px"
         height="30px"

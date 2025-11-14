@@ -1,9 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { colorThemeReducer } from '@/features';
+import { colorThemeReducer, sidebarReducer } from '@/features';
 
 export const store = configureStore({
   reducer: {
     colorTheme: colorThemeReducer,
+    sidebar: sidebarReducer,
   },
 });
 

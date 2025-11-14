@@ -6,6 +6,7 @@ export const SpherePage = () => {
   return (
     <div className={classes.sphere}>
       <Sidebar />
+      <main className="container"></main>
     </div>
   );
 };

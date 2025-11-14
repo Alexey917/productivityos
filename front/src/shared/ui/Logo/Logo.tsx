@@ -1,17 +1,13 @@
-import type { FC } from 'react';
 import classes from './Logo.module.css';
 import { useSelector } from 'react-redux';
 import type { RootState } from '@/shared';
 
-interface ILogo {
-  isOpen: boolean;
-}
-
-export const Logo: FC<ILogo> = ({ isOpen }) => {
+export const Logo = () => {
   const colorTheme = useSelector((state: RootState) => state.colorTheme.color);
+  const sidebarOpen = useSelector((state: RootState) => state.sidebar.isOpen);
 
   return (
-    <h2 className={isOpen ? `${classes.logo}` : `${classes.hidden}`}>
+    <h2 className={sidebarOpen ? `${classes.logo}` : `${classes.hidden}`}>
       <span className={`${classes.text} ${classes[colorTheme]}`}>
         ProductivityOS
       </span>
