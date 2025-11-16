@@ -9,6 +9,7 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
       '@/shared': path.resolve(__dirname, './src/shared'),
       '@/widgets': path.resolve(__dirname, './src/widgets'),
+      '@/features': path.resolve(__dirname, './src/features'),
     },
   },
 });

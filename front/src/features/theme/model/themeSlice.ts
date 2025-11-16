@@ -18,9 +18,9 @@ const colorThemeSlice = createSlice({
       state.currentPath = action.payload;
     },
 
-    setColor(state, action: PayloadAction<string>) {
-      state.color = action.payload;
-    },
+    // setColor(state, action: PayloadAction<string>) {
+    //   state.color = action.payload;
+    // },
 
     setColorByPath(state) {
       if (state.currentPath.includes('/dashboard')) {
@@ -36,6 +36,6 @@ const colorThemeSlice = createSlice({
   },
 });
 
-export const { setCurrentPath, setColor, setColorByPath } =
+export const { setCurrentPath, setColorByPath } =
   colorThemeSlice.actions;
 export default colorThemeSlice.reducer;
