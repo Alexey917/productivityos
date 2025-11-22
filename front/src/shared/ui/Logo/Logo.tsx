@@ -1,6 +1,6 @@
 import classes from './Logo.module.css';
 import { useSelector } from 'react-redux';
-import type { RootState } from '@/shared';
+import type { RootState } from '@/shared/lib/store';
 
 export const Logo = () => {
   const colorTheme = useSelector((state: RootState) => state.colorTheme.color);

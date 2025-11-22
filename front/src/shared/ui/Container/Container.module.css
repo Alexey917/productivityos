@@ -1,0 +1,17 @@
+.container {
+  position: relative;
+  max-width: 1000px;
+  margin: auto;
+  z-index: 2;
+}
+
+.title {
+  margin: 0;
+  padding-top: 145px;
+  padding-bottom: 32px;
+  font-family: 'Inter', sans-serif;
+  font-size: 42px;
+  line-height: 120%;
+  font-weight: 500;
+  color: white;
+}

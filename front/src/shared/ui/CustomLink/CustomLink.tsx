@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import type { RootState } from '@/app/providers/storeProvider/store';
+import type { RootState } from '@/shared';
 
 import classes from './CustomLink.module.css';
 
