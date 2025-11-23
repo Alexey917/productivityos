@@ -5,13 +5,29 @@
   justify-content: center;
   gap: 10px;
   overflow: hidden;
-  /* border: 2px solid transparent; */
+  border: 2px solid transparent;
   border-radius: 8px;
   transition: all 0.5s ease;
 
   background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9))
-    padding-box;
-  /* linear-gradient(90deg, #fcd453, #ed654a) border-box; */
+      padding-box,
+    var(--linear-gradient);
+}
+
+.orange {
+  --linear-gradient: linear-gradient(90deg, #fcd453, #ed654a) border-box;
+  --svgColor: #fcd453;
+  --boxShadow: 1px 0 20px 10px #ed654a;
+  --hoverColor: rgba(237, 101, 74, 0.9);
+  --hoverShadow: 1px 11px 72px 1px #fcd453;
+}
+
+.green {
+  --linear-gradient: linear-gradient(90deg, #31c300, #e9ce5a) border-box;
+  --svgColor: #31c300;
+  --boxShadow: 1px 0 20px 10px #e9ce5a;
+  --hoverColor: rgba(49, 195, 0, 0.9);
+  --hoverShadow: 1px 11px 72px 1px #31c300;
 }
 
 @keyframes top {
@@ -65,7 +81,7 @@
   width: 2px;
   height: 2px;
   /* background: linear-gradient(90deg, #fcd453, #ed654a); */
-  box-shadow: 1px 0 20px 10px #ed654a;
+  box-shadow: var(--boxShadow);
   animation: top 3s 2.5s infinite;
   transition: all 1s;
 }
@@ -78,7 +94,7 @@
   height: 15px;
 
   /* background: linear-gradient(90deg, #fcd453, #ed654a); */
-  box-shadow: 1px 0 20px 10px #ed654a;
+  box-shadow: var(--boxShadow);
   animation: right 3s 1s infinite;
 }
 
@@ -89,7 +105,7 @@
   width: 50px;
   height: 2px;
   /* background: linear-gradient(90deg, #fcd453, #ed654a); */
-  box-shadow: 1px 0 20px 10px #ed654a;
+  box-shadow: var(--boxShadow);
   animation: bottom 3s 1s infinite;
 }
 
@@ -100,14 +116,14 @@
   width: 2px;
   height: 15px;
   /* background: linear-gradient(90deg, #fcd453, #ed654a); */
-  box-shadow: 1px 0 20px 10px #ed654a;
+  box-shadow: var(--boxShadow);
   animation: left 3s 2s infinite;
 }
 
 .icon {
   width: 18px;
   height: 18px;
-  fill: #fcd453;
+  fill: var(--svgColor);
 }
 
 .text {
@@ -119,8 +135,8 @@
 
 @media (hover: hover) {
   .btn:hover {
-    background: linear-gradient(rgba(237, 101, 74, 0.9), rgba(0, 0, 0, 0.9));
-    box-shadow: 1px 11px 72px 1px #fcd453;
+    background: linear-gradient(var(--hoverColor), rgba(0, 0, 0, 0.9));
+    box-shadow: var(--hoverShadow);
     -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
     transition: all 3s;
   }
