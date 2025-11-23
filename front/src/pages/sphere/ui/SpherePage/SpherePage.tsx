@@ -1,5 +1,5 @@
 import { Sidebar } from '@/widgets';
-import { useToggleModal } from '@/features';
+import { useToggleModal, CreateSphere } from '@/features';
 import { Container, CreateButton, Modal } from '@/shared';
 
 import classes from './SpherePage.module.css';
@@ -12,7 +12,11 @@ export const SpherePage = () => {
       <Sidebar />
       <Container title="Сферы">
         <CreateButton toggleModal={toggleModal} />
-        {/* {openModel && <Modal><CreateSphere /></Modal>} */}
+        {openModel && (
+          <Modal>
+            <CreateSphere />
+          </Modal>
+        )}
       </Container>
     </div>
   );

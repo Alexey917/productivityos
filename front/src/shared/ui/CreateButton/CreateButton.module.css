@@ -80,7 +80,6 @@
   left: -25px;
   width: 2px;
   height: 2px;
-  /* background: linear-gradient(90deg, #fcd453, #ed654a); */
   box-shadow: var(--boxShadow);
   animation: top 3s 2.5s infinite;
   transition: all 1s;
@@ -92,8 +91,6 @@
   right: -25px;
   width: 2px;
   height: 15px;
-
-  /* background: linear-gradient(90deg, #fcd453, #ed654a); */
   box-shadow: var(--boxShadow);
   animation: right 3s 1s infinite;
 }
@@ -104,7 +101,6 @@
   right: -50px;
   width: 50px;
   height: 2px;
-  /* background: linear-gradient(90deg, #fcd453, #ed654a); */
   box-shadow: var(--boxShadow);
   animation: bottom 3s 1s infinite;
 }
@@ -115,7 +111,6 @@
   left: -25px;
   width: 2px;
   height: 15px;
-  /* background: linear-gradient(90deg, #fcd453, #ed654a); */
   box-shadow: var(--boxShadow);
   animation: left 3s 2s infinite;
 }

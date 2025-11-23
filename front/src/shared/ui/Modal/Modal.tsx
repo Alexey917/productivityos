@@ -1,11 +1,14 @@
-import type { ReactNode } from 'react';
+import type { FC, ReactNode } from 'react';
 import classes from './Modal.module.css';
 
-export const Modal = (children: ReactNode) => {
+interface IModal {
+  children: ReactNode;
+}
+
+export const Modal: FC<IModal> = ({ children }) => {
   return (
     <div className={classes.modal}>
-      <div className={classes.overlay}></div>
-      {children}
+      <div className={classes.overlay}>{children}</div>
     </div>
   );
 };
