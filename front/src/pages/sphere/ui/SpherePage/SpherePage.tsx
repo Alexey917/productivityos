@@ -1,14 +1,18 @@
 import { Sidebar } from '@/widgets';
+import { useToggleModal } from '@/features';
+import { Container, CreateButton, Modal } from '@/shared';
 
 import classes from './SpherePage.module.css';
-import { Container, CreateButton } from '@/shared';
 
 export const SpherePage = () => {
+  const { openModel, toggleModal } = useToggleModal();
+
   return (
     <div className={classes.sphere}>
       <Sidebar />
       <Container title="Сферы">
-        <CreateButton />
+        <CreateButton toggleModal={toggleModal} />
+        {/* {openModel && <Modal><CreateSphere /></Modal>} */}
       </Container>
     </div>
   );
