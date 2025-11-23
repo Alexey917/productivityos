@@ -8,16 +8,16 @@
   /* border: 2px solid transparent; */
   border-radius: 8px;
   transition: all 0.5s ease;
-  box-shadow: 1px 11px 72px 1px #fcd453;
+
   background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9))
     padding-box;
   /* linear-gradient(90deg, #fcd453, #ed654a) border-box; */
-  -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
 }
 
 @keyframes top {
   0% {
     width: 50px;
+    top: -5px;
   }
   50%,
   100% {
@@ -28,6 +28,7 @@
 @keyframes right {
   0% {
     height: 2px;
+    right: -5px;
   }
   50%,
   100% {
@@ -38,6 +39,7 @@
 @keyframes bottom {
   0% {
     right: -100%;
+    bottom: -5px;
   }
   50%,
   100% {
@@ -48,28 +50,30 @@
 @keyframes left {
   0% {
     bottom: -100%;
+    left: -5px;
   }
   50%,
   100% {
-    bottom: 100%;
+    bottom: 200%;
   }
 }
 
 .topLine {
   position: absolute;
-  top: -5px;
-  left: 0;
+  top: -20px;
+  left: -25px;
   width: 2px;
   height: 2px;
   /* background: linear-gradient(90deg, #fcd453, #ed654a); */
   box-shadow: 1px 0 20px 10px #ed654a;
-  animation: top 3s 3.5s infinite;
+  animation: top 3s 2.5s infinite;
+  transition: all 1s;
 }
 
 .rightLine {
   position: absolute;
   top: -15px;
-  right: -5px;
+  right: -25px;
   width: 2px;
   height: 15px;
 
@@ -80,24 +84,24 @@
 
 .bottomLine {
   position: absolute;
-  bottom: -5px;
+  bottom: -25px;
   right: -50px;
   width: 50px;
   height: 2px;
   /* background: linear-gradient(90deg, #fcd453, #ed654a); */
   box-shadow: 1px 0 20px 10px #ed654a;
-  animation: bottom 3s 2s infinite;
+  animation: bottom 3s 1s infinite;
 }
 
 .leftLine {
   position: absolute;
   bottom: -15px;
-  left: -5px;
+  left: -25px;
   width: 2px;
   height: 15px;
   /* background: linear-gradient(90deg, #fcd453, #ed654a); */
   box-shadow: 1px 0 20px 10px #ed654a;
-  animation: left 3s 3s infinite;
+  animation: left 3s 2s infinite;
 }
 
 .icon {
@@ -113,7 +117,18 @@
   color: white;
 }
 
-.btn:hover {
-  background: linear-gradient(rgba(237, 101, 74, 0.9), rgba(0, 0, 0, 0.9));
-  transition: all 3s;
+@media (hover: hover) {
+  .btn:hover {
+    background: linear-gradient(rgba(237, 101, 74, 0.9), rgba(0, 0, 0, 0.9));
+    box-shadow: 1px 11px 72px 1px #fcd453;
+    -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+    transition: all 3s;
+  }
+
+  .btn:hover .topLine,
+  .btn:hover .rightLine,
+  .btn:hover .bottomLine,
+  .btn:hover .leftLine {
+    animation-play-state: paused;
+  }
 }
