@@ -1,0 +1,81 @@
+.label {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 15px;
+
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 100%;
+  color: white;
+}
+
+.input {
+  -webkit-appearance: none;
+  display: block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  cursor: pointer;
+  vertical-align: middle;
+  box-shadow: hsla(0, 0%, 100%, 0.15) 0 1px 1px, inset hsla(0, 0%, 0%, 0.5) 0 0;
+  background-color: hsla(0, 0%, 0%, 0.2);
+  background-image: -webkit-radial-gradient(
+    var(--fc) 0%,
+    var(--ed) 25%,
+    var(--fc) 50%,
+    var(--ed) 75%
+  );
+  background-repeat: no-repeat;
+  -webkit-transition: background-position 0.15s cubic-bezier(0.8, 0, 1, 1),
+    -webkit-transform 0.25s cubic-bezier(0.8, 0, 1, 1);
+  outline: none;
+}
+
+.input:checked {
+  -webkit-transition: background-position 0.2s 0.15s cubic-bezier(0, 0, 0.2, 1),
+    -webkit-transform 0.25s cubic-bezier(0, 0, 0.2, 1);
+}
+
+.input:active {
+  -webkit-transform: scale(1.5);
+  -webkit-transition: -webkit-transform 0.1s 0.15s cubic-bezier(0, 0, 0.2, 1);
+}
+
+.input,
+.input:active {
+  background-position: 0 16px;
+}
+
+.input:checked {
+  background-position: 0 0;
+}
+
+.label:has(.input:checked) {
+  background: var(--label-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.input:checked ~ .input,
+.input:checked ~ .input:active {
+  background-position: 0 -16px;
+}
+
+.orange {
+  --label-gradient: linear-gradient(90deg, #fcd453, #ed654a);
+  --fc: #fcd453;
+  --ed: #ed654a;
+}
+
+@media (hover: hover) {
+  .label:hover {
+    background: var(--label-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    cursor: pointer;
+  }
+}
