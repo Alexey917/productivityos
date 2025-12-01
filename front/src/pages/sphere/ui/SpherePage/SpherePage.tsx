@@ -13,8 +13,8 @@ export const SpherePage = () => {
       <Container title="Сферы">
         <CreateButton toggleModal={toggleModal} />
         {openModel && (
-          <Modal>
-            <CreateSphere />
+          <Modal toggleModal={toggleModal} openModel={openModel}>
+            <CreateSphere toggleModal={toggleModal} />
           </Modal>
         )}
       </Container>
