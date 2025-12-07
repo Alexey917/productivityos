@@ -1,7 +1,6 @@
 .inputWrapper {
   position: relative;
   background: #1c1f2b;
-
   z-index: 0;
 }
 
@@ -15,8 +14,7 @@
       padding-box,
     var(--input-gradient);
 
-  background-color: #1c1f2b;
-
+  /* background-color: #1c1f2b; */
   outline: none;
   color: white;
   z-index: 1;
@@ -59,6 +57,8 @@
 
 .orange {
   --input-gradient: linear-gradient(90deg, #fcd453, #ed654a);
-  --fc: #fcd453;
-  --ed: #ed654a;
+}
+
+.blue {
+  --input-gradient: linear-gradient(90deg, #6a80f3, #35da89);
 }

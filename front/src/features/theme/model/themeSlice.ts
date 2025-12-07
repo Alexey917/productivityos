@@ -7,7 +7,7 @@ interface IColorTheme {
 
 const initialState: IColorTheme = {
   currentPath: '/',
-  color: 'purple',
+  color: 'blue',
 };
 
 const colorThemeSlice = createSlice({
@@ -29,13 +29,14 @@ const colorThemeSlice = createSlice({
         state.color = 'orange';
       } else if (state.currentPath.includes('/habbits')) {
         state.color = 'green';
-      } else {
+      } else if (state.currentPath.includes('/analytics')) {
         state.color = 'red';
+      } else {
+        state.color = 'blue';
       }
     },
   },
 });
 
-export const { setCurrentPath, setColorByPath } =
-  colorThemeSlice.actions;
+export const { setCurrentPath, setColorByPath } = colorThemeSlice.actions;
 export default colorThemeSlice.reducer;

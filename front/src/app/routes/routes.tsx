@@ -1,14 +1,17 @@
-import { SpherePage } from '@/pages';
-import { DashboardPage } from '@/pages';
+import {
+  LoginPage,
+  SpherePage,
+  DashboardPage,
+  HabbitsPage,
+  AnalyticsPage,
+} from '@/pages';
 import { createBrowserRouter } from 'react-router-dom';
 import { RouterSync } from '../providers/routerSync/routerSync';
-import { HabbitsPage } from '@/pages/habbits';
-import { AnalyticsPage } from '@/pages/analytics';
 
 export const router = createBrowserRouter([
   {
     path: '/',
-    // element: <SpherePage />,
+    element: <LoginPage />,
   },
 
   {
