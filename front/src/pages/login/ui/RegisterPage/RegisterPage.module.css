@@ -1,0 +1,96 @@
+.registration {
+  position: relative;
+  background-image: url('./login_bg.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  z-index: 0;
+}
+
+.registration::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: black;
+  opacity: 0.8;
+  z-index: 1;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  gap: 30px;
+  padding: 32px;
+  width: 320px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9))
+      padding-box,
+    linear-gradient(90deg, #6a80f3, #35da89) border-box;
+  z-index: 1;
+}
+
+.wrapper {
+  position: relative;
+  content: '';
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 32px;
+  width: 320px;
+  height: 450px;
+  z-index: 1;
+}
+
+.wrapper::before,
+.wrapper::after {
+  position: absolute;
+  content: '';
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #6a80f3, #35da89);
+  border-radius: 8px;
+  z-index: -1;
+}
+
+.wrapper::before {
+  filter: blur(12px);
+  animation: light 3s cubic-bezier(0.1, -0.6, 0.2, 0) infinite;
+  transition: all 2s;
+}
+
+@keyframes light {
+  0% {
+    filter: blur(12px);
+  }
+
+  50% {
+    filter: blur(24px);
+  }
+
+  100% {
+    filter: blur(12px);
+  }
+}
+
+@media (hover: hover) {
+  .link:hover {
+    background: linear-gradient(90deg, #6a80f3, #35da89);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+}

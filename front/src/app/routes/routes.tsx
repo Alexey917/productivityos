@@ -1,5 +1,6 @@
 import {
   LoginPage,
+  RegisterPage,
   SpherePage,
   DashboardPage,
   HabbitsPage,
@@ -13,7 +14,10 @@ export const router = createBrowserRouter([
     path: '/',
     element: <LoginPage />,
   },
-
+  {
+    path: '/registration',
+    element: <RegisterPage />,
+  },
   {
     path: '/dashboard',
     element: (

@@ -1,6 +1,5 @@
 .btn {
   position: relative;
-  margin-top: 25px;
   padding: 10px 10px;
   width: 256px;
   border-radius: 8px;
@@ -54,26 +53,6 @@
   border-radius: 6px;
   opacity: 1;
 }
-
-/* var(--fc),
-    var(--ed),
-    var(--fc),
-    var(--ed),
-    var(--fc),
-    var(--ed),
-    var(--fc),
-    var(--ed)
-
-
-    #ff0000,
-    #ff7300,
-    #fffb00,
-    #48ff00,
-    #00ffd5,
-    #002bff,
-    #ff00c8,
-    #ff0000
-    */
 
 @keyframes glowing {
   0% {
