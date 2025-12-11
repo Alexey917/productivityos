@@ -1,31 +1,48 @@
-import { useState, type FC } from 'react';
+import { useState, type FC, forwardRef } from 'react';
 import { useSelector } from 'react-redux';
+
 import type { RootState } from '@/shared/lib/store';
 
 import classes from './InputAnim.module.css';
 
-interface IInputAnim {
+// interface IInputAnim {
+//   placeholder: string;
+// }
+
+type Props = {
   placeholder: string;
-}
-
-export const InputAnim: FC<IInputAnim> = ({ placeholder }) => {
-  const colorTheme = useSelector((state: RootState) => state.colorTheme.color);
-  const [isFocused, setFocused] = useState<boolean>(false);
-
-  return (
-    <div
-      className={`${classes.inputWrapper} ${classes[colorTheme]} ${
-        isFocused ? classes.focused : ''
-      }`}
-    >
-      <input
-        type="text"
-        className={`${classes.input} ${classes[colorTheme]}`}
-        placeholder={placeholder}
-        name={placeholder}
-        onFocus={() => setFocused(true)}
-        onBlur={() => setFocused(false)}
-      />
-    </div>
-  );
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: () => void;
+  name?: string;
 };
+
+export const InputAnim = forwardRef<HTMLInputElement, Props>(
+  ({ placeholder, onChange, onBlur, name }, ref) => {
+    const colorTheme = useSelector(
+      (state: RootState) => state.colorTheme.color,
+    );
+    const [isFocused, setFocused] = useState<boolean>(false);
+
+    return (
+      <div
+        className={`${classes.inputWrapper} ${classes[colorTheme]} ${
+          isFocused ? classes.focused : ''
+        }`}
+      >
+        <input
+          ref={ref}
+          type="text"
+          className={`${classes.input} ${classes[colorTheme]}`}
+          placeholder={placeholder}
+          name={name ? name : placeholder}
+          onChange={onChange}
+          onBlur={(e) => {
+            setFocused(false);
+            onBlur?.();
+          }}
+          onFocus={() => setFocused(true)}
+        />
+      </div>
+    );
+  },
+);

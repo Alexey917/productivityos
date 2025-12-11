@@ -96,6 +96,13 @@
   margin-left: 10px;
 }
 
+.error {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  line-height: 100%;
+  color: red;
+}
+
 @keyframes light {
   0% {
     filter: blur(12px);

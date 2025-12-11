@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { FormButton, InputAnim, Logo } from '@/shared';
 
 import classes from './RegisterPage.module.css';
@@ -13,6 +14,11 @@ export const RegisterPage = () => {
           <InputAnim placeholder="Пароль" />
           <InputAnim placeholder="Повторить пароль" />
           <FormButton text="Зарегистрироваться" />
+          <div className={classes.linkWrapper}>
+            <Link to="/" className={classes.link}>
+              Вернуться главную
+            </Link>
+          </div>
         </form>
       </div>
     </div>

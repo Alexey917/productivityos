@@ -7,9 +7,14 @@ import classes from './FormButton.module.css';
 interface IFromButton {
   text: string;
   toggleModal?: () => void;
+  disabled?: boolean;
 }
 
-export const FormButton: FC<IFromButton> = ({ text, toggleModal }) => {
+export const FormButton: FC<IFromButton> = ({
+  text,
+  toggleModal,
+  disabled,
+}) => {
   const colorTheme = useSelector((state: RootState) => state.colorTheme.color);
 
   return (
@@ -17,6 +22,7 @@ export const FormButton: FC<IFromButton> = ({ text, toggleModal }) => {
       type="submit"
       className={`${classes.btn} ${classes[colorTheme]}`}
       onClick={toggleModal}
+      disabled={disabled}
     >
       {text}
     </button>
