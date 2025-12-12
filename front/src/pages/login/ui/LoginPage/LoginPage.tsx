@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
-import { FormButton, InputAnim, Logo } from '@/shared';
+import { FormButton, InputAnim, Logo, COMMON_PASSWORDS } from '@/shared';
+
 import classes from './LoginPage.module.css';
 
 interface ILoginForm {
@@ -12,6 +13,7 @@ export const LoginPage = () => {
   const {
     control,
     handleSubmit,
+    getValues,
     formState: { isValid },
   } = useForm<ILoginForm>({
     mode: 'onBlur',
@@ -64,7 +66,56 @@ export const LoginPage = () => {
               </div>
             )}
           />
-          <InputAnim placeholder="Пароль" />
+          <Controller
+            name="password"
+            control={control}
+            rules={{
+              required: 'Обязательное поле',
+              minLength: { value: 12, message: 'не менее 12 символов' },
+              maxLength: { value: 64, message: 'не более 64 символов' },
+              pattern: {
+                value: /^[a-zA-Z0-9!@#$%^&*()_+\-={}\[\]|:;"'<>,.?\/`~]+$/,
+                message: 'недопустимые символы',
+              },
+              validate: {
+                noUppercase: (value) =>
+                  /[A-Z]/.test(value) || 'нет заглавных букв',
+
+                noLowercase: (value) =>
+                  /[a-z]/.test(value) || 'нет строчных букв',
+
+                noNumbers: (value) => /[0-9]/.test(value) || 'нет цифр',
+
+                noSpecialSymbols: (value) =>
+                  /[0!@#$%^&*()_+\-={}\[\]|:;"'<>,.?\/`~]/.test(value) ||
+                  'нет специальных символов',
+
+                hasSequence: (value) =>
+                  /^(?!.*([a-zA-Z0-9!@#$%^&*()_+\-={}\[\]|:;"'<>,.?\/`~])\1{3,})/.test(
+                    value,
+                  ) || 'последовательность одного символа',
+
+                personalInfo: (value) => {
+                  const loginValue = getValues('login');
+                  return value !== loginValue || 'не используйте логин';
+                },
+
+                commonPasswords: (value) =>
+                  !COMMON_PASSWORDS.includes(value) ||
+                  'часто используемый пароль',
+              },
+            }}
+            render={({ field, fieldState }) => (
+              <div>
+                <InputAnim {...field} placeholder="Пароль" />
+                {fieldState.error && (
+                  <span className={classes.error}>
+                    {fieldState.error.message}
+                  </span>
+                )}
+              </div>
+            )}
+          />
           <div className={classes.linkWrapper}>
             <Link to="registration" className={classes.link}>
               Регистрация
