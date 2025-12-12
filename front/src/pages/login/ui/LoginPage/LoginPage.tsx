@@ -35,6 +35,23 @@ export const LoginPage = () => {
               required: 'Обязательное поле',
               minLength: { value: 3, message: 'Не менее 3 символов' },
               maxLength: { value: 20, message: 'Не более 20 символов' },
+              pattern: {
+                value: /^[a-zA-Z0-9._-]+$/,
+                message: 'недопустимые символы',
+              },
+              validate: {
+                firstSymbol: (value) =>
+                  /^[a-zA-Z][a-zA-Z0-9._-]+$/.test(value) ||
+                  'Не начинается с цифр и символов',
+
+                lastSymbol: (value) =>
+                  /^[a-zA-Z0-9._-]+[a-zA-Z0-9]$/.test(value) ||
+                  'Не заканчивается .-_ ',
+
+                moreTwoSymbols: (value) =>
+                  /^(?!.*(\.\.|--|__))/.test(value) ||
+                  'Несколько спец.символов подряд',
+              },
             }}
             render={({ field, fieldState }) => (
               <div>
