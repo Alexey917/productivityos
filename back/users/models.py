@@ -15,8 +15,8 @@ class User(models.Model):
   birthday = models.DateField(blank=True, null=True, verbose_name=_('Дата рождения'), default=None, help_text='Формат: ГГГГ-ММ-ДД')
   city = models.CharField(blank=True, null=True, verbose_name=_('Город'), default=None, max_length=100)
   sex = models.CharField(blank=True, verbose_name=_('Пол'), default=sexChoices.NO_SPECIFIED, choices=sexChoices.choices)
-  create_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Дата создания'))
-  update_at = models.DateTimeField(auto_now=True, verbose_name=_('Дата обновления'))
+  # create_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Дата создания'))
+  # update_at = models.DateTimeField(auto_now=True, verbose_name=_('Дата обновления'))
 
   class Meta: 
     verbose_name = _('Пользователь')
