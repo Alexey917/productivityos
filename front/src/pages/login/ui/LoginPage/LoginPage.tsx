@@ -3,6 +3,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { FormButton, InputAnim, Logo, COMMON_PASSWORDS } from '@/shared';
 
 import classes from './LoginPage.module.css';
+import { useEffect } from 'react';
 
 interface ILoginForm {
   login: string;
@@ -21,9 +22,11 @@ export const LoginPage = () => {
   });
 
   const onSubmit = (data: any) => {
-    alert(JSON.stringify(data));
-    console.log(data);
+    alert(JSON.stringify(data.login));
+    console.log(data.login);
   };
+
+  // useEffect(() => {}, [inputValue]);
 
   return (
     <div className={classes.login}>

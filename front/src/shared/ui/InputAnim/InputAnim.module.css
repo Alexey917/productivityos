@@ -65,6 +65,21 @@
   border-radius: 8px;
 }
 
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px rgba(28, 31, 43, 1) inset !important;
+  -webkit-text-fill-color: white;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+input:-webkit-autofill,
+input:-moz-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -moz-box-shadow: 0 0 0 1000px rgba(28, 31, 43, 1) inset !important;
+  box-shadow: 0 0 0 1000px rgba(28, 31, 43, 1) inset !important;
+}
+
 .orange {
   --input-gradient: linear-gradient(90deg, #fcd453, #ed654a);
 }

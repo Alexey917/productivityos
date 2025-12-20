@@ -1,12 +1,13 @@
 from django.db import models
-from core.models import TimeStampedModel, UUIDModel, SoftDeleteModel
+from productivityos_backend.models import TimeStampedModel, UUIDModel, SoftDeleteModel
+from django.utils.translation import gettext_lazy as _
 import datetime
 
 # Create your models here.
-class User(models.Model, TimeStampedModel, UUIDModel, SoftDeleteModel):
+class User(models.Model):
   class sexChoices(models.TextChoices):
     MALE = 'мужчина', _('Мужчина')
-    MALE = 'женщина', _('Женщина')
+    FAMALE = 'женщина', _('Женщина')
     NO_SPECIFIED = 'не указано', _('Не указано')
 
   username = models.CharField(max_length=20, unique=True, verbose_name='Логин', help_text=_('От 3 до 20 символов. Только буквы, цифры и .-_'))
@@ -35,12 +36,11 @@ class User(models.Model, TimeStampedModel, UUIDModel, SoftDeleteModel):
   class Meta: 
     verbose_name = _('Пользователь')
     verbose_name_plural = _('Пользователи')
-    ordering = ['-create_at']
+    
 
     indexes = [
       models.Index(fields=['username']),
       models.Index(fields=['email']),
-      models.Index(fields=['create_at']),
     ] 
 
     def __str__(self):
