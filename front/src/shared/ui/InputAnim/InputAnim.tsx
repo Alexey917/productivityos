@@ -14,10 +14,11 @@ type Props = {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: () => void;
   name?: string;
+  type: string;
 };
 
 export const InputAnim = forwardRef<HTMLInputElement, Props>(
-  ({ placeholder, onChange, onBlur, name }, ref) => {
+  ({ placeholder, onChange, onBlur, name, type }, ref) => {
     const colorTheme = useSelector(
       (state: RootState) => state.colorTheme.color,
     );
@@ -31,7 +32,7 @@ export const InputAnim = forwardRef<HTMLInputElement, Props>(
       >
         <input
           ref={ref}
-          type="text"
+          type={type}
           className={`${classes.input} ${classes[colorTheme]}`}
           placeholder={placeholder}
           name={name ? name : placeholder}
