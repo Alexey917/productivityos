@@ -3,7 +3,6 @@ import { useForm, Controller } from 'react-hook-form';
 import { FormButton, InputAnim, Logo, REGEX } from '@/shared';
 
 import classes from './LoginPage.module.css';
-import { useEffect } from 'react';
 
 interface ILoginForm {
   login: string;
@@ -25,8 +24,6 @@ export const LoginPage = () => {
     alert(JSON.stringify(data.login));
     console.log(data.login);
   };
-
-  // useEffect(() => {}, [inputValue]);
 
   return (
     <main className={classes.login}>
@@ -65,6 +62,7 @@ export const LoginPage = () => {
                   type="text"
                   aria-describedby={`login-error-${field.name}`}
                   aria-invalid={fieldState.error ? 'true' : 'false'}
+                  aria-required="true"
                 />
                 {fieldState.error && (
                   <span
@@ -121,6 +119,7 @@ export const LoginPage = () => {
                   type="password"
                   aria-describedby={`login-error-${field.name}`}
                   aria-invalid={fieldState.error ? 'true' : 'false'}
+                  aria-required="true"
                 />
                 {fieldState.error && (
                   <span
@@ -142,7 +141,11 @@ export const LoginPage = () => {
               Забыли пароль?
             </Link>
           </div>
-          <FormButton text="Войти" disabled={!isValid ? true : false} />
+          <FormButton
+            text="Войти"
+            disabled={!isValid ? true : false}
+            aria-describedby={!isValid ? 'form-errors' : undefined}
+          />
         </form>
       </div>
     </main>
