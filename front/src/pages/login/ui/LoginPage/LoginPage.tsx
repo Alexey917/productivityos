@@ -1,6 +1,9 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
 import { FormButton, InputAnim, Logo, REGEX } from '@/shared';
+import { loginApi } from '../../api/login';
+import axios from 'axios';
 
 import classes from './LoginPage.module.css';
 
@@ -10,6 +13,9 @@ interface ILoginForm {
 }
 
 export const LoginPage = () => {
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+
   const {
     control,
     handleSubmit,
@@ -20,9 +26,24 @@ export const LoginPage = () => {
     reValidateMode: 'onChange',
   });
 
-  const onSubmit = (data: any) => {
-    alert(JSON.stringify(data.login));
-    console.log(data.login);
+  const onSubmit = async (data: ILoginForm) => {
+    // setLoading(true);
+    // try {
+    //   const response = await loginApi(data);
+    //   localStorage.setItem('token', response?.data.token);
+    //   axios.interceptors.request.use((config) => {
+    //     const token = localStorage.getItem('token');
+    //     if (token) {
+    //       config.headers.Authorization = `Bear ${token}`;
+    //     }
+    //     return config;
+    //   });
+    // } catch (e) {
+    //   console.log(e);
+    //   setError('Неверный логин/пароль');
+    //   setError('Ошибка сети');
+    // }
+    // setLoading(false);
   };
 
   return (
@@ -133,6 +154,7 @@ export const LoginPage = () => {
               </div>
             )}
           />
+          {error && <span className={classes.error}>{error}</span>}
           <div className={classes.linkWrapper}>
             <Link to="registration" className={classes.link}>
               Регистрация
@@ -146,6 +168,23 @@ export const LoginPage = () => {
             disabled={!isValid ? true : false}
             aria-describedby={!isValid ? 'form-errors' : undefined}
           />
+          {/* {loading ? (
+            <div>Вход...</div>
+          ) : (
+            <div className={classes.linkWrapper}>
+              <Link to="registration" className={classes.link}>
+                Регистрация
+              </Link>
+              <Link to="#" className={classes.link}>
+                Забыли пароль?
+              </Link>
+            </div>
+            <FormButton
+              text="Войти"
+              disabled={!isValid ? true : false}
+              aria-describedby={!isValid ? 'form-errors' : undefined}
+            />
+          )} */}
         </form>
       </div>
     </main>

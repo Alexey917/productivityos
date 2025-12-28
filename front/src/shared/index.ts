@@ -11,3 +11,6 @@ export { REGEX } from './lib/constants/regexp';
 
 export { store } from '../app/providers/storeProvider/store';
 export type { RootState, AppDispatch } from './lib/store';
+
+export { client } from './api/client';
+export { loginApi } from '../pages/login/api/login';
