@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
-import { FormButton, InputAnim, Logo, REGEX } from '@/shared';
+import { FormButton, InputAnim, Logo, REGEX, client } from '@/shared';
 import { loginApi } from '../../api/login';
+
 import axios from 'axios';
 
 import classes from './LoginPage.module.css';
@@ -27,23 +28,17 @@ export const LoginPage = () => {
   });
 
   const onSubmit = async (data: ILoginForm) => {
-    // setLoading(true);
-    // try {
-    //   const response = await loginApi(data);
-    //   localStorage.setItem('token', response?.data.token);
-    //   axios.interceptors.request.use((config) => {
-    //     const token = localStorage.getItem('token');
-    //     if (token) {
-    //       config.headers.Authorization = `Bear ${token}`;
-    //     }
-    //     return config;
-    //   });
-    // } catch (e) {
-    //   console.log(e);
-    //   setError('Неверный логин/пароль');
-    //   setError('Ошибка сети');
-    // }
-    // setLoading(false);
+    setLoading(true);
+    setError('');
+    try {
+      const response = await loginApi.login(data);
+    } catch (e) {
+      console.log(e);
+      setError('Неверный логин/пароль');
+      setError('Ошибка сети');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
