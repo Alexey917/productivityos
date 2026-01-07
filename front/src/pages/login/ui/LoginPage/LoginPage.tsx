@@ -1,10 +1,12 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
-import { FormButton, InputAnim, Logo, REGEX, client } from '@/shared';
-import { loginApi } from '../../api/login';
+import { FormButton, InputAnim, Logo, REGEX } from '@/shared';
 
-import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+import type { RootState, AppDispatch } from '@/shared';
+import { loginThunk } from '../../model/thunk';
+import { clearError } from '../../model/authSlice';
 
 import classes from './LoginPage.module.css';
 
@@ -14,8 +16,12 @@ interface ILoginForm {
 }
 
 export const LoginPage = () => {
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch<AppDispatch>();
+
+  const isLoading = useSelector((state: RootState) => state.auth.isLoading);
+  const error = useSelector((state: RootState) => state.auth.error);
 
   const {
     control,
@@ -28,18 +34,17 @@ export const LoginPage = () => {
   });
 
   const onSubmit = async (data: ILoginForm) => {
-    setLoading(true);
-    setError('');
     try {
-      const response = await loginApi.login(data);
-    } catch (e) {
-      console.log(e);
-      setError('Неверный логин/пароль');
-      setError('Ошибка сети');
-    } finally {
-      setLoading(false);
-    }
+      await dispatch(loginThunk(data)).unwrap(); // .unwrap() — это метод промиса, который возвращает результат успешного выполнения или выбрасывает ошибку при reject. Без unwrap придется обращаться result.payload
+      navigate('/dashboard');
+    } catch {}
   };
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearError());
+    };
+  }, [dispatch]);
 
   return (
     <main className={classes.login}>
