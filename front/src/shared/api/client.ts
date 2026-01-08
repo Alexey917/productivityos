@@ -1,39 +1,55 @@
-import axios, { AxiosError } from 'axios';
-import { useSelector } from 'react-redux';
-import type { RootState } from '../lib/store';
+import axios, { AxiosError, type InternalAxiosRequestConfig } from 'axios';
+import { refreshToken } from './endpoints/refresh';
+
+declare module 'axios' {
+  export interface InternalAxiosRequestConfig {
+    _retry?: boolean;
+  }
+}
 
 export const client = axios.create({
   baseURL: import.meta.env.BASE_URL,
+  withCredentials: true,
 });
 
 let isRefreshing = false; // идет ли сейчас обновление токена
-let failedQueue: any = []; // Массив (очередь) запросов, которые провалились из-за 401.
+let failedQueue: Array<{
+  resolve: (token: string) => void;
+  reject: (error: any) => void;
+}> = []; // Массив (очередь) запросов, которые провалились из-за 401.
 
 // Функция для обработки очереди.
-const processQueue = (error: any, token: string | null = null) => {
-  failedQueue.array.forEach((prom: any) => {
+const processQueue = (error: any = null, token: string | null = null) => {
+  failedQueue.forEach(({ resolve, reject }) => {
     if (error) {
-      prom.reject(error);
+      reject(error);
     } else {
-      prom.resolve(token);
+      resolve(token!);
     }
   });
   failedQueue = [];
 };
 
-axios.interceptors.request.use((config) => {
-  const csrfToken = useSelector((state: RootState) => state.auth.csrfToken); // так незя
-  if (config.method !== 'GET') {
-    config.headers['X-CSRF-Token'] = csrfToken;
+client.interceptors.request.use((config) => {
+  const accessToken = localStorage.getItem('accessToken');
+  if (accessToken && config.headers) {
+    config.headers.Authorization = `Bearer ${accessToken}`;
+  }
+
+  if (config.method && !['get', 'GET'].includes(config.method.toLowerCase())) {
+    const csrfToken = localStorage.getItem('csrfToken');
+    if (csrfToken && config.headers) {
+      config.headers['X-CSRF-Token'] = csrfToken;
+    }
   }
   return config;
 });
 
 // ловим все ответы от сервера, особенно ошибки.
-axios.interceptors.response.use(
+client.interceptors.response.use(
   (response) => response,
   async (error: AxiosError) => {
-    const originalRequest = error.config; // Сохраняем оригинальный конфиг запроса (URL, метод, данные и т.д.), чтобы повторить его с новым токеном позже
+    const originalRequest = error.config as InternalAxiosRequestConfig; // Сохраняем оригинальный конфиг запроса (URL, метод, данные и т.д.), чтобы повторить его с новым токеном позже
 
     if (
       error.response?.status === 401 &&
@@ -42,14 +58,14 @@ axios.interceptors.response.use(
     ) {
       //Если уже идет обновление токена, ставим запрос в очередь.
       if (isRefreshing) {
-        return new Promise((resolve, rejected) => {
-          failedQueue.push({ resolve, rejected });
+        return new Promise((resolve, reject) => {
+          failedQueue.push({ resolve, reject });
         })
           .then((token) => {
             if (originalRequest.headers) {
               originalRequest.headers.Authorization = `Bearer ${token}`; // обновляем заголовок
             }
-            return axios(originalRequest); // повторяем оригинальный запрос
+            return client(originalRequest); // повторяем оригинальный запрос
           })
           .catch((err) => Promise.reject(err));
       }
@@ -58,19 +74,12 @@ axios.interceptors.response.use(
       isRefreshing = true; // другие запросы будут попадать в очередь
 
       try {
-        const { accessToken, csrfToken } = await client.post<{
-          accessToken: string;
-          csrfToken: string;
-        }>(
-          '/refresh',
-          {},
-          {
-            withCredentials: true,
-          },
-        );
+        const { accessToken, csrfToken } = await refreshToken();
 
         localStorage.setItem('accessToken', accessToken);
-        axios.defaults.headers.common[
+        localStorage.setItem('csrfToken', csrfToken);
+
+        client.defaults.headers.common[
           'Authorization'
         ] = `Bearer ${accessToken}`;
 
@@ -80,28 +89,37 @@ axios.interceptors.response.use(
         if (originalRequest.headers) {
           originalRequest.headers.Authorization = `Bearer ${accessToken}`;
         }
-        return axios(originalRequest);
+        return client(originalRequest);
       } catch (refreshError) {
-        processQueue(refreshError, null);
+        // Если refresh провалился.
+        processQueue(refreshError, null); // все запросы в очереди получают ошибку
         localStorage.removeItem('accessToken');
-        window.location.href = '/login';
+        window.location.href = '/login'; //  пользователь должен залогиниться заново
         return Promise.reject(refreshError);
       } finally {
-        isRefreshing = false;
+        isRefreshing = false; // Всегда сбрасываем флаг, даже если была ошибка. Чтобы новые запросы могли снова инициировать refresh при необходимости.
       }
     }
-    return Promise.reject(error);
+    return Promise.reject(error); // Если это не 401 или другая ошибка — просто прокидываем дальше.
   },
 );
+
+const initAuth = () => {
+  const token = localStorage.getItem('accessToken');
+  if (token) {
+    client.defaults.headers.common.Authorization = `Bearer ${token}`;
+  }
+};
+
+// Запускаем инициализацию
+initAuth();
 
 export const updateAuthHeader = (token: string | null) => {
   if (token) {
     client.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    localStorage.setItem('accessToken', token);
   } else {
-    client.defaults.headers.common['Authorization'];
+    delete client.defaults.headers.common['Authorization'];
+    localStorage.removeItem('accessToken');
   }
 };
-
-const token = localStorage.getItem('accessToken');
-
-if (token) updateAuthHeader(token);

@@ -1,15 +1,18 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
 interface IAuthStore {
-  accessToken: string | null;
-  csrfToken: string | null;
+  isAuthenticated: boolean;
   isLoading: boolean;
   error: string | null;
 }
 
+const checkAuth = () => {
+  const token = localStorage.getItem('accessToken');
+  return !!token;
+};
+
 const initialState: IAuthStore = {
-  accessToken: localStorage.getItem('accessToken'),
-  csrfToken: localStorage.getItem('csrfToken'),
+  isAuthenticated: checkAuth(),
   isLoading: false,
   error: null,
 };
@@ -24,16 +27,21 @@ const loginSlice = createSlice({
     ) => {
       const { accessToken, csrfToken } = action.payload;
 
-      state.accessToken = accessToken;
-      state.csrfToken = csrfToken;
-
       localStorage.setItem('accessToken', accessToken);
-      localStorage.setItem('csrf', csrfToken);
+      localStorage.setItem('csrfToken', csrfToken);
+
+      state.isAuthenticated = true;
+      state.isLoading = false;
+      state.error = null;
     },
 
-    updateAccessTokens: (state, action: PayloadAction<string>) => {
-      state.accessToken = action.payload;
-      localStorage.setItem('accessToken', action.payload);
+    updateAccessTokens: (
+      state,
+      action: PayloadAction<{ accessToken: string; csrfToken: string }>,
+    ) => {
+      const { accessToken, csrfToken } = action.payload;
+      localStorage.setItem('accessToken', accessToken);
+      localStorage.setItem('csrfToken', csrfToken);
     },
 
     setLoading: (state, action: PayloadAction<boolean>) => {
@@ -50,10 +58,12 @@ const loginSlice = createSlice({
     },
 
     logout: (state) => {
-      state.error = null;
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('csrfToken');
+
+      state.isAuthenticated = false;
       state.isLoading = false;
-      state.accessToken = localStorage.remove('accessToken');
-      state.csrfToken = localStorage.remove('csrfToken');
+      state.error = null;
     },
   },
 });

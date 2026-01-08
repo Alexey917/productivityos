@@ -19,8 +19,6 @@ export const loginThunk = createAsyncThunk(
 
       client.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
 
-      dispatch(setLoading(false));
-
       return { accessToken, csrfToken };
     } catch (error: unknown) {
       if (error instanceof AxiosError) {

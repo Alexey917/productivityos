@@ -8,8 +8,3 @@ export interface ILoginResponse {
   csrfToken: string;
   user?: {};
 }
-
-export interface IRefreshResponse {
-  accessToken: string;
-  csrfToken: string;
-}
