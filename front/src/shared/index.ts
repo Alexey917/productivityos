@@ -8,6 +8,7 @@ export { InputRadio } from './ui/InputRadio/InputRadio';
 export { FormButton } from './ui/FormButton/FormButton';
 
 export { REGEX } from './lib/constants/regexp';
+export { getErrorMessage } from './lib/utils/errorsHandler';
 
 export { store } from '../app/providers/storeProvider/store';
 export type { RootState, AppDispatch } from './lib/store';
