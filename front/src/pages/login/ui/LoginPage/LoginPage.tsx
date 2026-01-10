@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
-import { FormButton, InputAnim, Logo, REGEX } from '@/shared';
+import { FormButton, InputAnim, Loader, Logo, REGEX } from '@/shared';
 
 import { useSelector, useDispatch } from 'react-redux';
 import type { RootState, AppDispatch } from '@/shared';
@@ -48,7 +48,10 @@ export const LoginPage = () => {
 
   return (
     <main className={classes.login}>
-      <div className={classes.wrapper}>
+      <div
+        className={classes.wrapper}
+        style={{ height: isLoading ? '352px' : '356px' }}
+      >
         <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
           <Logo />
           <Controller
@@ -155,36 +158,25 @@ export const LoginPage = () => {
             )}
           />
           {error && <span className={classes.error}>{error}</span>}
-          <div className={classes.linkWrapper}>
-            <Link to="registration" className={classes.link}>
-              Регистрация
-            </Link>
-            <Link to="#" className={classes.link}>
-              Забыли пароль?
-            </Link>
-          </div>
-          <FormButton
-            text="Войти"
-            disabled={!isValid ? true : false}
-            aria-describedby={!isValid ? 'form-errors' : undefined}
-          />
-          {/* {loading ? (
-            <div>Вход...</div>
+          {isLoading ? (
+            <Loader theme="login" />
           ) : (
-            <div className={classes.linkWrapper}>
-              <Link to="registration" className={classes.link}>
-                Регистрация
-              </Link>
-              <Link to="#" className={classes.link}>
-                Забыли пароль?
-              </Link>
-            </div>
-            <FormButton
-              text="Войти"
-              disabled={!isValid ? true : false}
-              aria-describedby={!isValid ? 'form-errors' : undefined}
-            />
-          )} */}
+            <>
+              <div className={classes.linkWrapper}>
+                <Link to="registration" className={classes.link}>
+                  Регистрация
+                </Link>
+                <Link to="#" className={classes.link}>
+                  Забыли пароль?
+                </Link>
+              </div>
+              <FormButton
+                text="Войти"
+                disabled={!isValid ? true : false}
+                aria-describedby={!isValid ? 'form-errors' : undefined}
+              />
+            </>
+          )}
         </form>
       </div>
     </main>

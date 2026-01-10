@@ -6,6 +6,7 @@ export { Modal } from './ui/Modal/Modal';
 export { InputAnim } from './ui/InputAnim/InputAnim';
 export { InputRadio } from './ui/InputRadio/InputRadio';
 export { FormButton } from './ui/FormButton/FormButton';
+export { Loader } from './ui/Loader/Loader';
 
 export { REGEX } from './lib/constants/regexp';
 export { getErrorMessage } from './lib/utils/errorsHandler';

@@ -1,0 +1,108 @@
+.container {
+  position: relative;
+
+  animation: rotate 4s ease-out infinite;
+  filter: url('#gooey');
+}
+
+.login {
+  --linear-gradient: linear-gradient(45deg, #6a80f3, #35da89);
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(360deg);
+  }
+
+  50% {
+    transform: rotate(360deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.liquid {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--linear-gradient);
+
+  border-radius: 50%;
+  --an_dur: 4s;
+}
+
+.liquid:nth-child(1) {
+  top: 0;
+  animation: animate1 var(--an_dur) linear infinite;
+}
+
+.liquid:nth-child(2) {
+  left: 0;
+  animation: animate2 var(--an_dur) linear infinite;
+}
+
+.liquid:nth-child(3) {
+  left: 100%;
+  animation: animate3 var(--an_dur) linear infinite;
+}
+
+.liquid:nth-child(4) {
+  top: 100%;
+  animation: animate4 var(--an_dur) linear infinite;
+}
+
+@keyframes animate1 {
+  0% {
+    top: 0%;
+  }
+  50% {
+    top: 100%;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+@keyframes animate2 {
+  0% {
+    left: 0%;
+  }
+  50% {
+    left: 100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes animate3 {
+  0% {
+    left: 100%;
+  }
+  50% {
+    left: 0%;
+  }
+  100% {
+    left: 0%;
+  }
+}
+
+@keyframes animate4 {
+  0% {
+    top: 100%;
+  }
+  50% {
+    top: 0%;
+  }
+  100% {
+    top: 0%;
+  }
+}
+
+svg {
+  width: 0;
+  height: 0;
+}
