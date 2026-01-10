@@ -7,19 +7,24 @@ declare module 'axios' {
   }
 }
 
+interface IFailedQueueItem {
+  resolve: (token: string) => void;
+  reject: (reason: AxiosError | Error) => void;
+}
+
 export const client = axios.create({
   baseURL: import.meta.env.BASE_URL,
   withCredentials: true,
 });
 
 let isRefreshing = false; // идет ли сейчас обновление токена
-let failedQueue: Array<{
-  resolve: (token: string) => void;
-  reject: (error: any) => void;
-}> = []; // Массив (очередь) запросов, которые провалились из-за 401.
+let failedQueue: Array<IFailedQueueItem> = []; // Массив (очередь) запросов, которые провалились из-за 401.
 
 // Функция для обработки очереди.
-const processQueue = (error: any = null, token: string | null = null) => {
+const processQueue = (
+  error: AxiosError | Error | null = null,
+  token: string | null = null,
+) => {
   failedQueue.forEach(({ resolve, reject }) => {
     if (error) {
       reject(error);
@@ -90,9 +95,32 @@ client.interceptors.response.use(
           originalRequest.headers.Authorization = `Bearer ${accessToken}`;
         }
         return client(originalRequest);
-      } catch (refreshError) {
+      } catch (refreshError: unknown) {
         // Если refresh провалился.
-        processQueue(refreshError, null); // все запросы в очереди получают ошибку
+
+        let errorToQueue: AxiosError;
+
+        if (refreshError instanceof AxiosError) {
+          errorToQueue = refreshError;
+        } else if (refreshError instanceof Error) {
+          errorToQueue = new AxiosError(
+            refreshError.message,
+            'REFRESH_FAILED',
+            originalRequest,
+            undefined,
+            undefined,
+          );
+        } else {
+          errorToQueue = new AxiosError(
+            'Refresh token failed',
+            'REFRESH_FAILED',
+            originalRequest,
+            undefined,
+            undefined,
+          );
+        }
+
+        processQueue(errorToQueue, null); // все запросы в очереди получают ошибку
         localStorage.removeItem('accessToken');
         window.location.href = '/login'; //  пользователь должен залогиниться заново
         return Promise.reject(refreshError);
