@@ -6,6 +6,7 @@ import {
   HabbitsPage,
   AnalyticsPage,
 } from '@/pages';
+import { ProtectedRoute } from '@/shared';
 import { createBrowserRouter } from 'react-router-dom';
 import { RouterSync } from '../providers/routerSync/routerSync';
 
@@ -23,7 +24,9 @@ export const router = createBrowserRouter([
     element: (
       <>
         <RouterSync />
-        <DashboardPage />
+        <ProtectedRoute>
+          <DashboardPage />
+        </ProtectedRoute>
       </>
     ),
   },
@@ -32,7 +35,9 @@ export const router = createBrowserRouter([
     element: (
       <>
         <RouterSync />
-        <SpherePage />
+        <ProtectedRoute>
+          <SpherePage />
+        </ProtectedRoute>
       </>
     ),
   },
@@ -41,7 +46,9 @@ export const router = createBrowserRouter([
     element: (
       <>
         <RouterSync />
-        <HabbitsPage />
+        <ProtectedRoute>
+          <HabbitsPage />
+        </ProtectedRoute>
       </>
     ),
   },
@@ -50,7 +57,9 @@ export const router = createBrowserRouter([
     element: (
       <>
         <RouterSync />
-        <AnalyticsPage />
+        <ProtectedRoute>
+          <AnalyticsPage />
+        </ProtectedRoute>
       </>
     ),
   },

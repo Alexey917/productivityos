@@ -7,6 +7,7 @@ export { InputAnim } from './ui/InputAnim/InputAnim';
 export { InputRadio } from './ui/InputRadio/InputRadio';
 export { FormButton } from './ui/FormButton/FormButton';
 export { Loader } from './ui/Loader/Loader';
+export { ProtectedRoute } from './ui/ProtectedRoute/ProtectedRoute';
 
 export { REGEX } from './lib/constants/regexp';
 export { getErrorMessage } from './lib/utils/errorsHandler';
